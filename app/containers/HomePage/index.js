@@ -14,6 +14,7 @@ import Helmet from 'react-helmet';
 import SideBar from 'containers/SideBar';
 import Filter from 'containers/Filter';
 import Content from 'containers/Content';
+import BuildList from 'containers/BuildList';
 import Container from 'containers/Container';
 import PageWrapper from './PageWrapper';
 
@@ -34,7 +35,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
             <Filter />
           </SideBar>
           <Content>
-            content
+            <BuildList />
           </Content>
         </Container>
       </PageWrapper>

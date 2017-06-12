@@ -9,6 +9,7 @@ import { reposLoaded, repoLoadingError } from 'containers/App/actions';
 
 import request from 'utils/request';
 import { makeSelectUsername } from 'containers/HomePage/selectors';
+import { buildsData } from 'containers/BuildList/sagas';
 
 /**
  * Github repos request/response handler
@@ -44,4 +45,5 @@ export function* githubData() {
 // Bootstrap sagas
 export default [
   githubData,
+  buildsData,
 ];
