@@ -12,6 +12,7 @@ import Helmet from 'react-helmet';
 // import { makeSelectLoading } from 'containers/App/selectors';
 
 import SideBar from 'containers/SideBar';
+import Filter from 'containers/Filter';
 import Content from 'containers/Content';
 import Container from 'containers/Container';
 import PageWrapper from './PageWrapper';
@@ -30,7 +31,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
         />
         <Container>
           <SideBar>
-            sidebar content
+            <Filter />
           </SideBar>
           <Content>
             content
