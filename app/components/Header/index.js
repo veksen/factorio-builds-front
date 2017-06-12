@@ -1,29 +1,36 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import A from './A';
-import Img from './Img';
+import Logo from 'components/Logo';
+import HeaderTag from './Header';
+import Container from './Container';
+import SiteTitle from './SiteTitle';
+import Title from './Title';
 import NavBar from './NavBar';
+import Button from './Button';
 import HeaderLink from './HeaderLink';
-import Banner from './banner.jpg';
 import messages from './messages';
 
 class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <div>
-        <A href="https://twitter.com/mxstbr">
-          <Img src={Banner} alt="react-boilerplate - Logo" />
-        </A>
-        <NavBar>
-          <HeaderLink to="/">
-            <FormattedMessage {...messages.home} />
-          </HeaderLink>
-          <HeaderLink to="/features">
-            <FormattedMessage {...messages.features} />
-          </HeaderLink>
-        </NavBar>
-      </div>
+      <HeaderTag>
+        <Container>
+          <SiteTitle to="/">
+            <Logo />
+            <Title>Factorio Builds</Title>
+          </SiteTitle>
+          <NavBar>
+            <Button to="/builds/create">Add a build</Button>
+            <HeaderLink to="/login">
+              <FormattedMessage {...messages.login} />
+            </HeaderLink>
+            <HeaderLink to="/register">
+              <FormattedMessage {...messages.createAccount} />
+            </HeaderLink>
+          </NavBar>
+        </Container>
+      </HeaderTag>
     );
   }
 }

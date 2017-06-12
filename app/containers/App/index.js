@@ -11,16 +11,15 @@ import Helmet from 'react-helmet';
 import styled from 'styled-components';
 
 import Header from 'components/Header';
-import Footer from 'components/Footer';
+import Headline from 'components/Headline';
+// import Footer from 'components/Footer';
 import withProgressBar from 'components/ProgressBar';
 
 const AppWrapper = styled.div`
-  max-width: calc(768px + 16px * 2);
-  margin: 0 auto;
   display: flex;
   min-height: 100%;
-  padding: 0 16px;
   flex-direction: column;
+  flex: 1;
 `;
 
 export function App(props) {
@@ -34,8 +33,9 @@ export function App(props) {
         ]}
       />
       <Header />
+      <Headline />
       {React.Children.toArray(props.children)}
-      <Footer />
+      {/* <Footer /> */}
     </AppWrapper>
   );
 }

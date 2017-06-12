@@ -3,21 +3,37 @@ import styled from 'styled-components';
 
 export default styled(Link)`
   display: inline-flex;
-  padding: 0.25em 2em;
-  margin: 1em;
+  padding: 0.25em;
+  margin-left: 25px;
   text-decoration: none;
-  border-radius: 4px;
+  text-transform: uppercase;
   -webkit-font-smoothing: antialiased;
   -webkit-touch-callout: none;
   user-select: none;
   cursor: pointer;
   outline: 0;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: bold;
-  font-size: 16px;
-  border: 2px solid #41ADDD;
-  color: #41ADDD;
-  
+  font-size: 17px;
+  color: #424242;
+  position: relative;
+
+  & span::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    bottom: -5px;
+    left: 5px;
+    right: 5px;
+    background: #424242;
+    transition: all .3s;
+    opacity: 0;
+  }
+
+  &:hover span::after,
+  &:focus span::after {
+    bottom: 0;
+    opacity: 1;
+  }
+
   &:active {
     background: #41ADDD;
     color: #FFF;
