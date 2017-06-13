@@ -11,10 +11,19 @@ import { createStructuredSelector } from 'reselect';
 import { loadBuilds } from './actions';
 import makeSelectBuildList from './selectors';
 import messages from './messages';
+import BuildCard from 'components/BuildCard'; // eslint-disable-line import/first
 
 export class BuildList extends React.Component { // eslint-disable-line react/prefer-stateless-function
   componentDidMount() {
     this.props.loadBuilds();
+  }
+
+  renderBuildCard(build) {
+    const buildId = build._id; // eslint-disable-line no-underscore-dangle
+
+    return (
+      <BuildCard key={buildId} build={build} />
+    );
   }
 
   render() {
@@ -27,8 +36,11 @@ export class BuildList extends React.Component { // eslint-disable-line react/pr
 
     return (
       <div>
-        {JSON.stringify(this.props.BuildList.builds)}
-        <FormattedMessage {...messages.header} />
+        <h4>
+          <FormattedMessage {...messages.header} />
+        </h4>
+
+        {this.props.BuildList.builds.map(this.renderBuildCard)}
       </div>
     );
   }
