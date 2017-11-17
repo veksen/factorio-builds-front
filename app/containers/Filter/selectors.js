@@ -8,6 +8,20 @@ const selectFilterDomain = () => (state) => state.get('filter');
 /**
  * Other specific selectors
  */
+const makeSelectFilterOnlyBluePrints = () => createSelector(
+  selectFilterDomain(),
+  (filterState) => filterState.get('onlyWithBlueprints')
+);
+
+const makeSelectFilterGameState = () => createSelector(
+  selectFilterDomain(),
+  (filterState) => filterState.get('gameState')
+);
+
+const makeSelectFilterType = () => createSelector(
+  selectFilterDomain(),
+  (filterState) => filterState.get('type')
+);
 
 
 /**
@@ -22,4 +36,7 @@ const makeSelectFilter = () => createSelector(
 export default makeSelectFilter;
 export {
   selectFilterDomain,
+  makeSelectFilterOnlyBluePrints,
+  makeSelectFilterGameState,
+  makeSelectFilterType,
 };

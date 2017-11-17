@@ -69,10 +69,10 @@ export class Filter extends React.Component { // eslint-disable-line react/prefe
         <Separator />
 
         <Checkbox
-          checked={this.props.Filter.type.balancer}
-          onClickEvent={() => this.props.toggleFilter('typeBalancer')}
+          checked={this.props.Filter.type.balancers}
+          onClickEvent={() => this.props.toggleFilter('typeBalancers')}
         >
-            Balancer
+            Balancers
         </Checkbox>
 
         <Checkbox
@@ -110,7 +110,7 @@ Filter.propTypes = {
       late: PropTypes.bool,
     }),
     type: PropTypes.shape({
-      balancer: PropTypes.bool,
+      balancers: PropTypes.bool,
       smelting: PropTypes.bool,
       trains: PropTypes.bool,
       production: PropTypes.bool,

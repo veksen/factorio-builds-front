@@ -32,10 +32,10 @@ export function toggleFilter(type) {
         type: TOGGLE_GAME_STATE,
         key: 'late',
       };
-    case 'typeBalancer':
+    case 'typeBalancers':
       return {
         type: TOGGLE_TYPE,
-        key: 'balancer',
+        key: 'balancers',
       };
     case 'typeSmelting':
       return {

@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { loadBuilds } from './actions';
-import makeSelectBuildList from './selectors';
+import { makeSelectBuildListFiltered } from './selectors';
 import messages from './messages';
 import BuildCard from 'components/BuildCard'; // eslint-disable-line import/first
 
@@ -40,19 +40,19 @@ export class BuildList extends React.Component { // eslint-disable-line react/pr
           <FormattedMessage {...messages.header} />
         </h4>
 
-        {this.props.BuildList.builds.map(this.renderBuildCard)}
+        {this.props.BuildListFiltered.map(this.renderBuildCard)}
       </div>
     );
   }
 }
 
 BuildList.propTypes = {
-  BuildList: PropTypes.object.isRequired,
+  BuildListFiltered: PropTypes.array,
   loadBuilds: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  BuildList: makeSelectBuildList(),
+  BuildListFiltered: makeSelectBuildListFiltered(),
 });
 
 function mapDispatchToProps(dispatch) {

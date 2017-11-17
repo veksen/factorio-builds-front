@@ -19,7 +19,7 @@ const initialState = fromJS({
     late: false,
   },
   type: {
-    balancer: false,
+    balancers: false,
     smelting: false,
     trains: false,
     production: false,
