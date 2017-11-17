@@ -36,9 +36,21 @@ const makeSelectBuildListFiltered = () => createSelector(
   }
 );
 
+const makeSelectBuildListCount = () => createSelector(
+  selectBuildListBuildsDomain(),
+  (substate) => substate.length
+);
+
+const makeSelectBuildListFilteredCount = () => createSelector(
+  makeSelectBuildListFiltered(),
+  (substate) => substate.length
+);
+
 export default makeSelectBuildList;
 export {
   selectBuildListDomain,
   selectBuildListBuildsDomain,
   makeSelectBuildListFiltered,
+  makeSelectBuildListCount,
+  makeSelectBuildListFilteredCount,
 };

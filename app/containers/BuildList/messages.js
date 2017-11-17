@@ -8,6 +8,6 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   header: {
     id: 'app.containers.BuildList.header',
-    defaultMessage: 'This is BuildList container !',
+    defaultMessage: 'Displaying {displaying} out of {total} builds',
   },
 });
