@@ -16,6 +16,10 @@ const BuildCardWrapper = styled.div`
   margin: 0 20px 20px;
   flex-direction: row;
   position: relative;
+  min-height: 20vh;
+  max-height: 60vh;
+  overflow: hidden;
+  background: url(${(props) => props.image}) no-repeat 50% 50% / cover;
 `;
 
 const Info = styled.div`
@@ -55,7 +59,9 @@ const Tag = styled.span`
   border-radius: 10px;
 `;
 
-const Image = styled.img`
+const HiddenImage = styled.img`
+  display: block;
+  opacity: 0;
   width: 100%;
   height: auto;
 `;
@@ -65,8 +71,8 @@ class BuildCard extends React.Component { // eslint-disable-line react/prefer-st
     const buildImage = require(`./${this.props.build.image}.jpg`); // eslint-disable-line global-require
 
     return (
-      <BuildCardWrapper>
-        <Image src={buildImage} />
+      <BuildCardWrapper image={buildImage}>
+        <HiddenImage src={buildImage} />
         <Info>
           <Title>{this.props.build.name}</Title>
           <Category>
