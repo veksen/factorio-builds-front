@@ -1,6 +1,9 @@
 import _ from 'lodash';
 import { createSelector } from 'reselect';
-import { makeSelectFilterType } from '../Filter/selectors';
+import {
+  makeSelectFilterOnlyBluePrints,
+  makeSelectFilterType,
+} from '../Filter/selectors';
 
 /**
  * Direct selector to the buildList state domain
@@ -12,6 +15,7 @@ const selectBuildListDomain = () => (state) => state.get('buildList');
  * Other specific selectors
  */
 const selectBuildListBuildsDomain = () => (state) => state.get('buildList').get('builds');
+const selectBuildListBlueprintsDomain = () => (state) => state.get('buildList').get('blueprints');
 
 
 /**
@@ -25,14 +29,22 @@ const makeSelectBuildList = () => createSelector(
 
 const makeSelectBuildListFiltered = () => createSelector(
   selectBuildListBuildsDomain(),
+  selectBuildListBlueprintsDomain(),
+  makeSelectFilterOnlyBluePrints(),
   makeSelectFilterType(),
-  (substate, filteredType) => {
-    // avoid filtering if every filter is false
-    if (_.every(filteredType.toJS(), (type) => type === false)) {
-      return substate;
+  (substate, blueprints, filteredBlueprints, filteredType) => {
+    let filteredSubstate = substate;
+
+    // only filter by type if every type filter is false
+    if (!_.every(filteredType.toJS(), (type) => type === false)) {
+      filteredSubstate = filteredSubstate.filter((b) => filteredType.get(b.category) === true);
     }
 
-    return substate.filter((b) => filteredType.get(b.category) === true);
+    if (filteredBlueprints) {
+      filteredSubstate = filteredSubstate.filter((b) => _.some(blueprints, (bp) => bp.build === b._id)); // eslint-disable-line no-underscore-dangle
+    }
+
+    return filteredSubstate;
   }
 );
 
