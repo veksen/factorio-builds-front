@@ -8,7 +8,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
-import { loadBuilds } from './actions';
+import { loadBuilds, loadBlueprints } from './actions';
 import {
   makeSelectBuildListFiltered,
   makeSelectBuildListCount,
@@ -24,6 +24,7 @@ import {
 export class BuildList extends React.Component { // eslint-disable-line react/prefer-stateless-function
   componentDidMount() {
     this.props.loadBuilds();
+    this.props.loadBlueprints();
   }
 
   renderBuildCard(build) {
@@ -62,6 +63,7 @@ BuildList.propTypes = {
   BuildListCount: PropTypes.int,
   BuildListFilteredCount: PropTypes.int,
   loadBuilds: PropTypes.func.isRequired,
+  loadBlueprints: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -73,6 +75,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     loadBuilds: () => dispatch(loadBuilds()),
+    loadBlueprints: () => dispatch(loadBlueprints()),
     dispatch,
   };
 }
