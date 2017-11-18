@@ -8,6 +8,9 @@ import {
   LOAD_BUILDS,
   LOAD_BUILDS_SUCCESS,
   LOAD_BUILDS_ERROR,
+  LOAD_BLUEPRINTS,
+  LOAD_BLUEPRINTS_SUCCESS,
+  LOAD_BLUEPRINTS_ERROR,
 } from './constants';
 
 /**
@@ -18,6 +21,12 @@ import {
 export function loadBuilds() {
   return {
     type: LOAD_BUILDS,
+  };
+}
+
+export function loadBlueprints() {
+  return {
+    type: LOAD_BLUEPRINTS,
   };
 }
 
@@ -34,6 +43,12 @@ export function buildsLoaded(builds) {
     builds,
   };
 }
+export function blueprintsLoaded(blueprints) {
+  return {
+    type: LOAD_BLUEPRINTS_SUCCESS,
+    blueprints,
+  };
+}
 
 /**
  * Dispatched when loading the builds fails
@@ -45,6 +60,12 @@ export function buildsLoaded(builds) {
 export function buildLoadingError(error) {
   return {
     type: LOAD_BUILDS_ERROR,
+    error,
+  };
+}
+export function blueprintLoadingError(error) {
+  return {
+    type: LOAD_BLUEPRINTS_ERROR,
     error,
   };
 }

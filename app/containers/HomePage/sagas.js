@@ -9,7 +9,7 @@ import { reposLoaded, repoLoadingError } from 'containers/App/actions';
 
 import request from 'utils/request';
 import { makeSelectUsername } from 'containers/HomePage/selectors';
-import { buildsData } from 'containers/BuildList/sagas';
+import { buildsData, blueprintsData } from 'containers/BuildList/sagas';
 
 /**
  * Github repos request/response handler
@@ -46,4 +46,5 @@ export function* githubData() {
 export default [
   githubData,
   buildsData,
+  blueprintsData,
 ];
