@@ -41,7 +41,8 @@ const makeSelectBuildListFiltered = () => createSelector(
     }
 
     if (filteredBlueprints) {
-      filteredSubstate = filteredSubstate.filter((b) => _.some(blueprints, (bp) => bp.build === b._id)); // eslint-disable-line no-underscore-dangle
+      const blueprintsMatchingBuildId = (id) => _.some(blueprints, (bp) => bp.build === id);
+      filteredSubstate = filteredSubstate.filter((b) => blueprintsMatchingBuildId(b._id)); // eslint-disable-line no-underscore-dangle
     }
 
     return filteredSubstate;
