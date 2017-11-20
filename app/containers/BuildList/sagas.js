@@ -1,5 +1,7 @@
-import { take, put, cancel, takeLatest } from 'redux-saga/effects';
+import { take, put, cancel, call, takeLatest } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
+
+import request from 'utils/request';
 import { LOAD_BUILDS, LOAD_BLUEPRINTS } from 'containers/BuildList/constants';
 import {
   buildsLoaded,
@@ -14,13 +16,13 @@ import {
 export function* getBuilds() {
   // // Select username from store
   // const username = yield select(makeSelectUsername());
-  const mockData = require('./mockBuilds.json'); // eslint-disable-line global-require
-  // const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
+  // const mockData = require('./mockBuilds.json'); // eslint-disable-line global-require
+  const requestURL = 'http://localhost:4040/api/builds';
 
   try {
     // Call our request helper (see 'utils/request')
-    const builds = yield mockData;
-    // const repos = yield call(request, requestURL);
+    // const builds = yield mockData;
+    const builds = yield call(request, requestURL);
     yield put(buildsLoaded(builds));
   } catch (err) {
     yield put(buildLoadingError(err));
