@@ -19,7 +19,7 @@ const BuildCardWrapper = styled.div`
   min-height: 20vh;
   max-height: 60vh;
   overflow: hidden;
-  background: url(${(props) => props.image}) no-repeat 50% 50% / cover;
+  background: #343434 url(${(props) => props.image}) no-repeat 50% 50% / cover;
 `;
 
 const Info = styled.div`
@@ -68,7 +68,10 @@ const HiddenImage = styled.img`
 
 class BuildCard extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const buildImage = require(`./${this.props.build.image}.jpg`); // eslint-disable-line global-require
+    const image = this.props.build.image
+      ? `${this.props.build.image}.jpg`
+      : 'trans.gif';
+    const buildImage = require(`./${image}`); // eslint-disable-line global-require
 
     return (
       <BuildCardWrapper image={buildImage}>
