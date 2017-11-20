@@ -68,8 +68,10 @@ const HiddenImage = styled.img`
 
 class BuildCard extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const image = this.props.build.image
-      ? `${this.props.build.image}.jpg`
+    const { build } = this.props;
+
+    const image = build.image
+      ? `${build.image}.jpg`
       : 'trans.gif';
     const buildImage = require(`./${image}`); // eslint-disable-line global-require
 
@@ -77,9 +79,9 @@ class BuildCard extends React.Component { // eslint-disable-line react/prefer-st
       <BuildCardWrapper image={buildImage}>
         <HiddenImage src={buildImage} />
         <Info>
-          <Title>{this.props.build.name}</Title>
+          <Title>{build.name}</Title>
           <Category>
-            <Tag>{this.props.build.category}</Tag>
+            <Tag>{build.category}</Tag>
           </Category>
         </Info>
       </BuildCardWrapper>
