@@ -7,13 +7,13 @@
  */
 
 import React from 'react';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
+import { Switch, Route } from 'react-router-dom';
 
+import HomePage from 'containers/HomePage/Loadable';
+import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
-import Headline from 'components/Headline';
-// import Footer from 'components/Footer';
-import withProgressBar from 'components/ProgressBar';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -22,26 +22,20 @@ const AppWrapper = styled.div`
   flex: 1;
 `;
 
-export function App(props) {
+export default function App() {
   return (
     <AppWrapper>
       <Helmet
         titleTemplate="%s - React.js Boilerplate"
         defaultTitle="React.js Boilerplate"
-        meta={[
-          { name: 'description', content: 'A React.js Boilerplate application' },
-        ]}
-      />
+      >
+        <meta name="description" content="A React.js Boilerplate application" />
+      </Helmet>
       <Header />
-      <Headline />
-      {React.Children.toArray(props.children)}
-      {/* <Footer /> */}
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="" component={NotFoundPage} />
+      </Switch>
     </AppWrapper>
   );
 }
-
-App.propTypes = {
-  children: React.PropTypes.node,
-};
-
-export default withProgressBar(App);

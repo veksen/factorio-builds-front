@@ -9,18 +9,17 @@ injectGlobal`
   }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  body.fontLoaded {
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
   #app {
     background-color: #fafafa;
     min-height: 100%;
     min-width: 100%;
-    display: flex;
-  }
-
-  #app > [data-reactroot] {
-    flex: 1;
   }
 
   p,

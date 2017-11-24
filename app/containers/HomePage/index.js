@@ -6,30 +6,22 @@
 
 import React from 'react';
 import Helmet from 'react-helmet';
-// import { connect } from 'react-redux';
-// import { createStructuredSelector } from 'reselect';
 
-// import { makeSelectLoading } from 'containers/App/selectors';
-
-import SideBar from 'containers/SideBar';
+import SideBar from 'components/SideBar';
 import Filter from 'containers/Filter';
-import Content from 'containers/Content';
+import Content from 'components/Content';
 import BuildList from 'containers/BuildList';
 import Container from 'containers/Container';
 import PageWrapper from './PageWrapper';
 
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    // const { loading } = this.props;
-
     return (
       <PageWrapper>
-        <Helmet
-          title="Home Page"
-          meta={[
-            { name: 'description', content: 'A React.js Boilerplate application homepage' },
-          ]}
-        />
+        <Helmet>
+          <title>Home Page</title>
+          <meta name="description" value="A React.js Boilerplate application homepage" />
+        </Helmet>
         <Container>
           <SideBar>
             <Filter />
@@ -43,14 +35,4 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
   }
 }
 
-// HomePage.propTypes = {
-//   loading: React.PropTypes.bool,
-// };
-//
-// const mapStateToProps = createStructuredSelector({
-//   loading: makeSelectLoading(),
-// });
-
-// Wrap the component to inject dispatch and state into it
-// export default connect(mapStateToProps, null)(HomePage);
 export default HomePage;

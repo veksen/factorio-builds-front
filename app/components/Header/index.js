@@ -2,7 +2,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Logo from 'components/Logo';
-import HeaderTag from './Header';
+import HeaderWrapper from './HeaderWrapper';
 import Container from './Container';
 import SiteTitle from './SiteTitle';
 import Title from './Title';
@@ -14,7 +14,7 @@ import messages from './messages';
 class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <HeaderTag>
+      <HeaderWrapper>
         <Container>
           <SiteTitle to="/">
             <Logo />
@@ -30,7 +30,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
             </HeaderLink>
           </NavBar>
         </Container>
-      </HeaderTag>
+      </HeaderWrapper>
     );
   }
 }
