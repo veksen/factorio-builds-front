@@ -1,19 +1,26 @@
-/*
+/**
  *
  * BuildList
  *
  */
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
+import { compose } from 'redux';
+
+import injectSaga from 'utils/injectSaga';
+import injectReducer from 'utils/injectReducer';
 import { loadBuilds, loadBlueprints } from './actions';
 import {
   makeSelectBuildListFiltered,
   makeSelectBuildListCount,
   makeSelectBuildListFilteredCount,
 } from './selectors';
+import reducer from './reducer';
+import saga from './saga';
 import messages from './messages';
 import BuildCard from 'components/BuildCard'; // eslint-disable-line import/first
 import {
@@ -36,13 +43,6 @@ export class BuildList extends React.Component { // eslint-disable-line react/pr
   }
 
   render() {
-    // const { loading, error, builds } = this.props;
-    // const buildsListProps = {
-    //   loading,
-    //   error,
-    //   builds,
-    // };
-
     return (
       <div>
         <Title>
@@ -80,4 +80,13 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BuildList);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+const withReducer = injectReducer({ key: 'buildList', reducer });
+const withSaga = injectSaga({ key: 'buildList', saga });
+
+export default compose(
+  withReducer,
+  withSaga,
+  withConnect,
+)(BuildList);
