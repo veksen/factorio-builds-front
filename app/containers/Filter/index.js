@@ -1,17 +1,23 @@
-/*
+/**
  *
  * Filter
  *
  */
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
+import { compose } from 'redux';
 import styled from 'styled-components';
+
+import injectReducer from 'utils/injectReducer';
 import { toggleFilter } from './actions';
 import makeSelectFilter from './selectors';
+import reducer from './reducer';
 import messages from './messages';
+
 import Search from 'components/Search'; // eslint-disable-line import/first
 import Input from './Input';
 import Title from './Title';
@@ -129,4 +135,11 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+const withReducer = injectReducer({ key: 'filter', reducer });
+
+export default compose(
+  withReducer,
+  withConnect,
+)(Filter);

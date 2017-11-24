@@ -7,9 +7,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
-
 export const InputWrapper = styled.input`
   border-radius: 5px;
   height: 55px;
@@ -22,15 +19,9 @@ export const InputWrapper = styled.input`
 class Input extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <InputWrapper>
-        <FormattedMessage {...messages.header} />
-      </InputWrapper>
+      <InputWrapper />
     );
   }
 }
-
-Input.propTypes = {
-
-};
 
 export default Input;

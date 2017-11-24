@@ -18,14 +18,12 @@ injectGlobal`
     min-width: 100%;
     display: flex;
   }
-
   #app > [data-reactroot] {
     flex: 1;
   }
 
   p,
   label {
-    font-family: Georgia, Times, 'Times New Roman', serif;
     line-height: 1.5em;
   }
 `;

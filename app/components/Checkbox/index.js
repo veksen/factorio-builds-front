@@ -4,7 +4,8 @@
 *
 */
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const CheckboxWrapper = styled.div`
@@ -46,7 +47,6 @@ const Text = styled.span`
   opacity: ${(props) => props.checked ? '1' : '0.5'};
   user-select: none;
 `;
-
 
 class Checkbox extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {

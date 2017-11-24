@@ -1,20 +1,8 @@
-import { fromJS } from 'immutable';
-import { makeSelectFilterOnlyBluePrints } from '../selectors';
+// import { fromJS } from 'immutable';
+// import { selectFilterDomain } from '../selectors';
 
-// const selector = makeSelectFilterDomain();
-
-describe('makeSelectFilterDomain', () => {
+describe('selectFilterDomain', () => {
   it('Expect to have unit tests specified', () => {
     expect(true).toEqual(false);
-  });
-});
-
-describe('makeSelectFilterOnlyBluePrints', () => {
-  it('should select the blueprint filter', () => {
-    const globalState = fromJS(true);
-    const mockedState = fromJS({
-      onlyWithBlueprints: globalState,
-    });
-    expect(makeSelectFilterOnlyBluePrints(mockedState)).toEqual(globalState);
   });
 });
