@@ -7,7 +7,7 @@ import Container from './Container';
 import SiteTitle from './SiteTitle';
 import Title from './Title';
 import NavBar from './NavBar';
-import Button from './Button';
+import Button from 'components/Button';
 import HeaderLink from './HeaderLink';
 import messages from './messages';
 
