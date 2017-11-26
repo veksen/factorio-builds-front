@@ -10,11 +10,12 @@ import styled from 'styled-components';
 
 export const ContainerWrapper = styled.div`
   max-width: calc(1366px + 20px * 2);
+  width: 50%;
   margin: 0 auto;
   display: flex;
   padding: 0 20px;
   flex: 1;
-  flex-direction: ${(props) => props.direction ? props.direction : 'row'}
+  flex-direction: ${(props) => props.direction ? props.direction : 'column'};
 `;
 
 export class Container extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function

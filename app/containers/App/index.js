@@ -12,6 +12,7 @@ import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
+import BuildsCreatePage from 'containers/BuildsCreatePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 
@@ -34,6 +35,7 @@ export default function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
+        <Route exact path="/builds/create" component={BuildsCreatePage} />
         <Route path="" component={NotFoundPage} />
       </Switch>
     </AppWrapper>
