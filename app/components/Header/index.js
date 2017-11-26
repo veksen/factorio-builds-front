@@ -1,13 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { push } from 'react-router-redux';
+import { connect } from 'react-redux';
 
-import Logo from 'components/Logo';
+import Logo from 'components/Logo'; // eslint-disable-line import/first
+import Button from 'components/Button';// eslint-disable-line import/first
 import HeaderWrapper from './HeaderWrapper';
 import Container from './Container';
 import SiteTitle from './SiteTitle';
 import Title from './Title';
 import NavBar from './NavBar';
-import Button from 'components/Button';
 import HeaderLink from './HeaderLink';
 import messages from './messages';
 
@@ -15,13 +18,13 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
   render() {
     return (
       <HeaderWrapper>
-        <Container>
+        <Container direction="row">
           <SiteTitle to="/">
             <Logo />
             <Title>Factorio Builds</Title>
           </SiteTitle>
           <NavBar>
-            <Button to="/builds/create">Add a build</Button>
+            <Button onClick={() => this.props.dispatch(push('/builds/create'))}>Add a build</Button>
             <HeaderLink to="/login">
               <FormattedMessage {...messages.login} />
             </HeaderLink>
@@ -35,4 +38,14 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
   }
 }
 
-export default Header;
+Header.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+export default connect(null, mapDispatchToProps)(Header);
