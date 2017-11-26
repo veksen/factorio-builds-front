@@ -31,6 +31,11 @@ const buttonStyles = css`
   &:active {
     opacity: 0.85;
   }
+
+  &[disabled] {
+    pointer-events: none;
+    opacity: 0.5;
+  }
 `;
 
 export default buttonStyles;
