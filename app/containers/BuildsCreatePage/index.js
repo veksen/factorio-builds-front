@@ -18,6 +18,7 @@ import Container from 'containers/Container'; // eslint-disable-line import/firs
 import FormWrapper from 'components/FormWrapper'; // eslint-disable-line import/first
 import FormInput from 'components/FormInput'; // eslint-disable-line import/first
 import FormTextarea from 'components/FormTextarea'; // eslint-disable-line import/first
+import FormSelect from 'components/FormSelect'; // eslint-disable-line import/first
 import FormButtonsWrapper from 'components/FormButtonsWrapper'; // eslint-disable-line import/first
 import Button from 'components/Button'; // eslint-disable-line import/first
 import FormContainer from './FormContainer';
@@ -80,8 +81,10 @@ export class BuildsCreatePage extends React.Component { // eslint-disable-line r
             </FormWrapper>
 
             <FormWrapper label={'Category'}>
-              <FormInput
+              <FormSelect
                 name="category"
+                placeholder={'Select a category...'}
+                options={['Balancers', 'Smelting', 'Trains', 'Production']}
                 required
               />
             </FormWrapper>
