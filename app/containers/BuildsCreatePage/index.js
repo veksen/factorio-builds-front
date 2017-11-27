@@ -22,6 +22,7 @@ import FormSelect from 'components/FormSelect'; // eslint-disable-line import/fi
 import FormButtonsWrapper from 'components/FormButtonsWrapper'; // eslint-disable-line import/first
 import Button from 'components/Button'; // eslint-disable-line import/first
 import FormContainer from './FormContainer';
+import SubmitPreviewExplanation from './SubmitPreviewExplanation';
 import injectSaga from 'utils/injectSaga'; // eslint-disable-line import/first
 import injectReducer from 'utils/injectReducer'; // eslint-disable-line import/first
 import makeSelectBuildsCreatePage from './selectors';
@@ -40,6 +41,10 @@ export class BuildsCreatePage extends React.Component { // eslint-disable-line r
     };
   }
 
+  getModel() {
+    return this.form && this.form.getModel();
+  }
+
   enableButton() {
     this.setState({
       canSubmit: true,
@@ -50,6 +55,14 @@ export class BuildsCreatePage extends React.Component { // eslint-disable-line r
     this.setState({
       canSubmit: false,
     });
+  }
+
+  canSubmit() {
+    return this.state.canSubmit && this.getModel().image;
+  }
+
+  canSubmitPreview() {
+    return this.state.canSubmit;
   }
 
   render() {
@@ -64,7 +77,7 @@ export class BuildsCreatePage extends React.Component { // eslint-disable-line r
           <FormattedMessage {...messages.header} />
         </H2>
 
-        <Formsy onValid={this.enableButton} onInvalid={this.disableButton}>
+        <Formsy onValid={this.enableButton} onInvalid={this.disableButton} ref={(r) => { this.form = r; }}>
           <FormContainer>
             <FormWrapper label={'Name'}>
               <FormInput
@@ -76,7 +89,6 @@ export class BuildsCreatePage extends React.Component { // eslint-disable-line r
             <FormWrapper label={'Image'}>
               <FormInput
                 name="image"
-                required
               />
             </FormWrapper>
 
@@ -102,9 +114,11 @@ export class BuildsCreatePage extends React.Component { // eslint-disable-line r
               />
             </FormWrapper>
 
+            {!this.canSubmit() && this.canSubmitPreview() && <SubmitPreviewExplanation>A build cannot be published without an image.</SubmitPreviewExplanation>}
+
             <FormButtonsWrapper>
-              <Button disabled={!this.state.canSubmit}>Add build</Button>
-              <Button disabled={!this.state.canSubmit}>Preview</Button>
+              <Button disabled={!this.canSubmit()}>Add build</Button>
+              <Button disabled={!this.canSubmitPreview()}>Preview</Button>
             </FormButtonsWrapper>
           </FormContainer>
         </Formsy>
