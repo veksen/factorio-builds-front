@@ -20,7 +20,7 @@ export const InputWrapper = styled.input`
 class Input extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <InputWrapper />
+      <InputWrapper {...this.props} />
     );
   }
 }

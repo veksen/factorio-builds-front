@@ -11,14 +11,15 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import Formsy from 'formsy-react';
 
 import H2 from 'components/H2'; // eslint-disable-line import/first
 import Container from 'containers/Container'; // eslint-disable-line import/first
 import FormWrapper from 'components/FormWrapper'; // eslint-disable-line import/first
+import FormInput from 'components/FormInput'; // eslint-disable-line import/first
+import FormTextarea from 'components/FormTextarea'; // eslint-disable-line import/first
 import FormButtonsWrapper from 'components/FormButtonsWrapper'; // eslint-disable-line import/first
 import Button from 'components/Button'; // eslint-disable-line import/first
-import Input from './Input';
-import Textarea from './Textarea';
 import FormContainer from './FormContainer';
 import injectSaga from 'utils/injectSaga'; // eslint-disable-line import/first
 import injectReducer from 'utils/injectReducer'; // eslint-disable-line import/first
@@ -28,6 +29,28 @@ import saga from './saga';
 import messages from './messages';
 
 export class BuildsCreatePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
+    super(props);
+
+    this.disableButton = this.disableButton.bind(this);
+    this.enableButton = this.enableButton.bind(this);
+    this.state = {
+      canSubmit: false,
+    };
+  }
+
+  enableButton() {
+    this.setState({
+      canSubmit: true,
+    });
+  }
+
+  disableButton() {
+    this.setState({
+      canSubmit: false,
+    });
+  }
+
   render() {
     return (
       <Container>
@@ -40,32 +63,48 @@ export class BuildsCreatePage extends React.Component { // eslint-disable-line r
           <FormattedMessage {...messages.header} />
         </H2>
 
-        <FormContainer>
-          <FormWrapper label={'Name'}>
-            <Input />
-          </FormWrapper>
+        <Formsy onValid={this.enableButton} onInvalid={this.disableButton}>
+          <FormContainer>
+            <FormWrapper label={'Name'}>
+              <FormInput
+                name="name"
+                required
+              />
+            </FormWrapper>
 
-          <FormWrapper label={'Image'}>
-            <Input />
-          </FormWrapper>
+            <FormWrapper label={'Image'}>
+              <FormInput
+                name="image"
+                required
+              />
+            </FormWrapper>
 
-          <FormWrapper label={'Category'}>
-            <Input />
-          </FormWrapper>
+            <FormWrapper label={'Category'}>
+              <FormInput
+                name="category"
+                required
+              />
+            </FormWrapper>
 
-          <FormWrapper label={'Description'}>
-            <Textarea />
-          </FormWrapper>
+            <FormWrapper label={'Description'}>
+              <FormTextarea
+                name="desc"
+                required
+              />
+            </FormWrapper>
 
-          <FormWrapper label={'Blueprint'}>
-            <Input />
-          </FormWrapper>
+            <FormWrapper label={'Blueprint'}>
+              <FormInput
+                name="blueprint"
+              />
+            </FormWrapper>
 
-          <FormButtonsWrapper>
-            <Button>Add build</Button>
-            <Button>Preview</Button>
-          </FormButtonsWrapper>
-        </FormContainer>
+            <FormButtonsWrapper>
+              <Button disabled={!this.state.canSubmit}>Add build</Button>
+              <Button disabled={!this.state.canSubmit}>Preview</Button>
+            </FormButtonsWrapper>
+          </FormContainer>
+        </Formsy>
       </Container>
     );
   }
