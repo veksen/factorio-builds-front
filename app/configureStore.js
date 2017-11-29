@@ -2,13 +2,16 @@
  * Create the store with dynamic reducers
  */
 
-import { createStore, applyMiddleware, compose } from 'redux';
+import { applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
+import Reactotron from 'reactotron-react-js';
 import createReducer from './reducers';
 
-const sagaMiddleware = createSagaMiddleware();
+const sagaMonitor = Reactotron.createSagaMonitor();
+
+const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
 
 export default function configureStore(initialState = {}, history) {
   // Create the store with two middlewares
@@ -37,7 +40,7 @@ export default function configureStore(initialState = {}, history) {
       : compose;
   /* eslint-enable */
 
-  const store = createStore(
+  const store = Reactotron.createStore(
     createReducer(),
     fromJS(initialState),
     composeEnhancers(...enhancers)

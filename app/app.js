@@ -40,6 +40,7 @@ import '!file-loader?name=[name].[ext]!./manifest.json';
 import 'file-loader?name=[name].[ext]!./.htaccess'; // eslint-disable-line import/extensions
 /* eslint-enable import/no-webpack-loader-syntax */
 
+import './utils/reactotron'; // eslint-disable-line import/first
 import configureStore from './configureStore';
 
 // Import i18n messages
