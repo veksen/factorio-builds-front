@@ -27,6 +27,7 @@ import injectSaga from 'utils/injectSaga'; // eslint-disable-line import/first
 import injectReducer from 'utils/injectReducer'; // eslint-disable-line import/first
 import makeSelectBuildsCreatePage from './selectors';
 import reducer from './reducer';
+import { saveBuild } from 'containers/BuildList/actions'; // eslint-disable-line import/first
 import saga from './saga';
 import messages from './messages';
 
@@ -36,6 +37,7 @@ export class BuildsCreatePage extends React.Component { // eslint-disable-line r
 
     this.disableButton = this.disableButton.bind(this);
     this.enableButton = this.enableButton.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       canSubmit: false,
     };
@@ -65,6 +67,12 @@ export class BuildsCreatePage extends React.Component { // eslint-disable-line r
     return this.state.canSubmit;
   }
 
+  handleSubmit() {
+    const build = this.getModel();
+
+    return this.props.dispatch(saveBuild(build));
+  }
+
   render() {
     return (
       <Container>
@@ -77,7 +85,7 @@ export class BuildsCreatePage extends React.Component { // eslint-disable-line r
           <FormattedMessage {...messages.header} />
         </H2>
 
-        <Formsy onValid={this.enableButton} onInvalid={this.disableButton} ref={(r) => { this.form = r; }}>
+        <Formsy onValid={this.enableButton} onInvalid={this.disableButton} ref={(r) => { this.form = r; }} onSubmit={() => this.handleSubmit()}>
           <FormContainer>
             <FormWrapper label={'Name'}>
               <FormInput
@@ -118,7 +126,7 @@ export class BuildsCreatePage extends React.Component { // eslint-disable-line r
 
             <FormButtonsWrapper>
               <Button disabled={!this.canSubmit()}>Add build</Button>
-              <Button disabled={!this.canSubmitPreview()}>Preview</Button>
+              <Button disabled={!this.canSubmitPreview()} onClick={() => this.form.submit()}>Preview</Button>
             </FormButtonsWrapper>
           </FormContainer>
         </Formsy>

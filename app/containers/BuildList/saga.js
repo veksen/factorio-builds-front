@@ -1,4 +1,4 @@
-import { all, put, call, takeLatest } from 'redux-saga/effects';
+import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import request from 'utils/request';
 import { LOAD_BUILDS, LOAD_BLUEPRINTS } from 'containers/BuildList/constants';
@@ -7,6 +7,8 @@ import {
   buildLoadingError,
   blueprintsLoaded,
   blueprintLoadingError,
+  buildSaved,
+  buildSavingError,
 } from 'containers/BuildList/actions';
 
 /**
@@ -57,6 +59,21 @@ export function* blueprintsData() {
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
   yield takeLatest(LOAD_BLUEPRINTS, getBlueprints);
+}
+
+export function* saveBuild({ build }) {
+  const requestURL = 'http://localhost:4040/api/builds';
+
+  try {
+    const builds = yield call(request, requestURL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(build),
+    });
+    yield put(buildSaved(builds));
+  } catch (err) {
+    yield put(buildSavingError(err));
+  }
 }
 
 // All sagas to be loaded

@@ -11,6 +11,9 @@ import {
   LOAD_BLUEPRINTS,
   LOAD_BLUEPRINTS_SUCCESS,
   LOAD_BLUEPRINTS_ERROR,
+  SAVE_BUILD,
+  SAVE_BUILD_SUCCESS,
+  SAVE_BUILD_ERROR,
 } from './constants';
 
 /**
@@ -27,6 +30,13 @@ export function loadBuilds() {
 export function loadBlueprints() {
   return {
     type: LOAD_BLUEPRINTS,
+  };
+}
+
+export function saveBuild(build) {
+  return {
+    type: SAVE_BUILD,
+    build,
   };
 }
 
@@ -49,6 +59,12 @@ export function blueprintsLoaded(blueprints) {
     blueprints,
   };
 }
+export function buildSaved(build) {
+  return {
+    type: SAVE_BUILD_SUCCESS,
+    build,
+  };
+}
 
 /**
  * Dispatched when loading the builds fails
@@ -66,6 +82,12 @@ export function buildLoadingError(error) {
 export function blueprintLoadingError(error) {
   return {
     type: LOAD_BLUEPRINTS_ERROR,
+    error,
+  };
+}
+export function buildSavingError(error) {
+  return {
+    type: SAVE_BUILD_ERROR,
     error,
   };
 }
