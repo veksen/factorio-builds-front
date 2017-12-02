@@ -1,6 +1,11 @@
-// import { take, call, put, select } from 'redux-saga/effects';
+import { all, takeLatest } from 'redux-saga/effects';
+
+import { SAVE_BUILD } from 'containers/BuildList/constants';
+import { saveBuild } from 'containers/BuildList/saga';
 
 // Individual exports for testing
 export default function* defaultSaga() {
-  // See example in containers/HomePage/saga.js
+  yield all([
+    takeLatest(SAVE_BUILD, saveBuild),
+  ]);
 }

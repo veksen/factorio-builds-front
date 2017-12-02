@@ -10,6 +10,8 @@ import {
   LOAD_BUILDS_SUCCESS,
   LOAD_BLUEPRINTS,
   LOAD_BLUEPRINTS_SUCCESS,
+  SAVE_BUILD,
+  SAVE_BUILD_SUCCESS,
 } from './constants';
 
 const initialState = fromJS({
@@ -29,6 +31,11 @@ function buildListReducer(state = initialState, action) {
     case LOAD_BLUEPRINTS_SUCCESS:
       return state
         .set('blueprints', action.blueprints);
+    case SAVE_BUILD:
+      return state;
+    case SAVE_BUILD_SUCCESS:
+      return state
+        .set('builds', state.get('builds').concat(action.build));
     default:
       return state;
   }
