@@ -7,12 +7,12 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
+import PageWrapper from 'components/PageWrapper';
 import SideBar from 'components/SideBar';
 import Filter from 'containers/Filter';
 import Content from 'components/Content';
 import BuildList from 'containers/BuildList';
 import Container from 'containers/Container';
-import PageWrapper from './PageWrapper';
 
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
