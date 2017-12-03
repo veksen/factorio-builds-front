@@ -7,6 +7,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { push } from 'react-router-redux';
+import { connect } from 'react-redux';
 
 const BuildCardWrapper = styled.div`
   align-items: flex-end;
@@ -21,6 +23,11 @@ const BuildCardWrapper = styled.div`
   max-height: 60vh;
   overflow: hidden;
   background: #343434 url(${(props) => props.image}) no-repeat 50% 50% / cover;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.85;
+  }
 `;
 
 const Info = styled.div`
@@ -70,6 +77,7 @@ const HiddenImage = styled.img`
 class BuildCard extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     const { build } = this.props;
+    const buildId = build._id; // eslint-disable-line no-underscore-dangle
 
     const image = build.image
       ? `${build.image}.jpg`
@@ -77,7 +85,10 @@ class BuildCard extends React.Component { // eslint-disable-line react/prefer-st
     const buildImage = require(`./${image}`); // eslint-disable-line global-require
 
     return (
-      <BuildCardWrapper image={buildImage}>
+      <BuildCardWrapper
+        image={buildImage}
+        onClick={() => this.props.dispatch(push(`/builds/${buildId}`))}
+      >
         <HiddenImage src={buildImage} />
         <Info>
           <Title>{build.name}</Title>
@@ -92,6 +103,13 @@ class BuildCard extends React.Component { // eslint-disable-line react/prefer-st
 
 BuildCard.propTypes = {
   build: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
-export default BuildCard;
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+export default connect(null, mapDispatchToProps)(BuildCard);
