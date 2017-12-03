@@ -10,7 +10,6 @@ import styled from 'styled-components';
 
 export const ContainerWrapper = styled.div`
   max-width: calc(1366px + 20px * 2);
-  width: 50%;
   margin: 0 auto;
   display: flex;
   padding: 0 20px;

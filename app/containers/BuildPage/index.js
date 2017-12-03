@@ -12,6 +12,7 @@ import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
+import PageWrapper from 'components/PageWrapper';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import makeSelectBuild from './selectors';
@@ -29,13 +30,13 @@ export class BuildPage extends React.Component { // eslint-disable-line react/pr
     const { build } = this.props;
 
     return (
-      <div>
+      <PageWrapper>
         <Helmet>
           <title>{build.name}</title>
           <meta name="description" content={build.desc} />
         </Helmet>
         <FormattedMessage {...messages.header} />
-      </div>
+      </PageWrapper>
     );
   }
 }
