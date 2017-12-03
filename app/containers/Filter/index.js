@@ -20,7 +20,7 @@ import messages from './messages';
 
 import Search from 'components/Search'; // eslint-disable-line import/first
 import Input from './Input';
-import Title from './Title';
+import Title from 'components/SideBar/Title'; // eslint-disable-line import/first
 import Checkbox from 'components/Checkbox'; // eslint-disable-line import/first
 
 const Separator = styled.hr`
