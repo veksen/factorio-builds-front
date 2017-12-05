@@ -13,3 +13,4 @@ exclude_paths:
 - node_modules/**/*
 - app/tests/**
 - flow-typed/
+- internals/
