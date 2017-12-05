@@ -5,6 +5,7 @@ import { createSelector } from 'reselect';
  */
 const selectBuildPageDomain = (state) => state.get('buildPage');
 const selectBuildDomain = (state) => state.get('buildPage').get('build');
+const selectBuildBlueprintsDomain = (state) => state.get('buildPage').get('blueprints');
 
 /**
  * Other specific selectors
@@ -20,7 +21,13 @@ const makeSelectBuild = () => createSelector(
   (substate) => substate
 );
 
+const makeSelectBuildBlueprints = () => createSelector(
+  selectBuildBlueprintsDomain,
+  (substate) => substate
+);
+
 export default makeSelectBuild;
 export {
   selectBuildPageDomain,
+  makeSelectBuildBlueprints,
 };

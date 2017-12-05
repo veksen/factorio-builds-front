@@ -17,32 +17,28 @@ import Container from 'containers/Container';
 import SideBar from 'components/SideBar';
 import Content from 'components/Content';
 import Title from 'components/SideBar/Title';
+import Blueprints from 'components/Blueprints';
 import H1 from 'components/H1';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectBuild from './selectors';
+import makeSelectBuild, { makeSelectBuildBlueprints } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import { loadBuild } from './actions';
+import { loadBuild, loadBuildBlueprints } from './actions';
 
 const Image = styled.img`
   display: block;
   max-width: 60%;
 `;
 
-// temp
-const Blueprints = styled.div``;
-
 export class BuildPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   componentDidMount() {
     this.props.loadBuild();
+    this.props.loadBuildBlueprints();
   }
 
   render() {
-    const { build } = this.props;
-
-    // TODO: implement
-    const blueprints = [];
+    const { build, blueprints } = this.props;
 
     const image = build.image
       ? `${build.image}.jpg`
@@ -83,16 +79,20 @@ export class BuildPage extends React.Component { // eslint-disable-line react/pr
 BuildPage.propTypes = {
   // dispatch: PropTypes.func.isRequired,
   loadBuild: PropTypes.func.isRequired,
+  loadBuildBlueprints: PropTypes.func.isRequired,
   build: PropTypes.object.isRequired,
+  blueprints: PropTypes.blueprints.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   build: makeSelectBuild(),
+  blueprints: makeSelectBuildBlueprints(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     loadBuild: () => dispatch(loadBuild()),
+    loadBuildBlueprints: () => dispatch(loadBuildBlueprints()),
     dispatch,
   };
 }
