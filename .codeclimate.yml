@@ -1,0 +1,15 @@
+engines:
+  eslint:
+    enabled: true
+  duplication:
+    enabled: true
+ratings:
+   paths:
+   - app/**
+   - server/**
+   - config/**
+   - "**.js"
+exclude_paths:
+- node_modules/**/*
+- app/tests/**
+- flow-typed/
