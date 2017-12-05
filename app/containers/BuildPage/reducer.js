@@ -9,10 +9,14 @@ import {
   LOAD_BUILD,
   LOAD_BUILD_SUCCESS,
   LOAD_BUILD_ERROR,
+  LOAD_BUILD_BLUEPRINTS,
+  LOAD_BUILD_BLUEPRINTS_SUCCESS,
+  LOAD_BUILD_BLUEPRINTS_ERROR,
 } from './constants';
 
 const initialState = fromJS({
   build: {},
+  blueprints: [],
   error: {},
 });
 
@@ -21,12 +25,20 @@ function buildPageReducer(state = initialState, action) {
     case LOAD_BUILD:
       return state;
     case LOAD_BUILD_SUCCESS:
-      console.log(action.build);
       return state
         .set('build', action.build);
     case LOAD_BUILD_ERROR:
       return state
         .set('build', {})
+        .set('error', action.error);
+    case LOAD_BUILD_BLUEPRINTS:
+      return state;
+    case LOAD_BUILD_BLUEPRINTS_SUCCESS:
+      return state
+        .set('blueprints', action.blueprints);
+    case LOAD_BUILD_BLUEPRINTS_ERROR:
+      return state
+        .set('blueprints', [])
         .set('error', action.error);
     default:
       return state;
