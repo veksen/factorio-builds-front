@@ -1,6 +1,6 @@
 /*
  *
- * BuildsCreatePage reducer
+ * BuildsForm reducer
  *
  */
 
@@ -11,7 +11,7 @@ import {
 
 const initialState = fromJS({});
 
-function buildsCreatePageReducer(state = initialState, action) {
+function buildsFormReducer(state = initialState, action) {
   switch (action.type) {
     case DEFAULT_ACTION:
       return state;
@@ -20,4 +20,4 @@ function buildsCreatePageReducer(state = initialState, action) {
   }
 }
 
-export default buildsCreatePageReducer;
+export default buildsFormReducer;
