@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for BuildsCreatePage
+ * Asynchronously loads the component for BuildsForm
  *
  */
 

@@ -1,6 +1,6 @@
 /**
  *
- * BuildsCreatePage
+ * BuildsForm
  *
  */
 
@@ -25,13 +25,13 @@ import FormContainer from './FormContainer';
 import SubmitPreviewExplanation from './SubmitPreviewExplanation';
 import injectSaga from 'utils/injectSaga'; // eslint-disable-line import/first
 import injectReducer from 'utils/injectReducer'; // eslint-disable-line import/first
-import makeSelectBuildsCreatePage from './selectors';
+import makeSelectBuildsForm from './selectors';
 import reducer from './reducer';
 import { saveBuild } from 'containers/BuildList/actions'; // eslint-disable-line import/first
 import saga from './saga';
 import messages from './messages';
 
-export class BuildsCreatePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+export class BuildsForm extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
 
@@ -77,8 +77,8 @@ export class BuildsCreatePage extends React.Component { // eslint-disable-line r
     return (
       <Container>
         <Helmet>
-          <title>BuildsCreatePage</title>
-          <meta name="description" content="Description of BuildsCreatePage" />
+          <title>BuildsForm</title>
+          <meta name="description" content="Description of BuildsForm" />
         </Helmet>
 
         <H2>
@@ -135,12 +135,12 @@ export class BuildsCreatePage extends React.Component { // eslint-disable-line r
   }
 }
 
-BuildsCreatePage.propTypes = {
+BuildsForm.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  buildscreatepage: makeSelectBuildsCreatePage(),
+  buildsform: makeSelectBuildsForm(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -151,11 +151,11 @@ function mapDispatchToProps(dispatch) {
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'buildsCreatePage', reducer });
-const withSaga = injectSaga({ key: 'buildsCreatePage', saga });
+const withReducer = injectReducer({ key: 'buildsForm', reducer });
+const withSaga = injectSaga({ key: 'buildsForm', saga });
 
 export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(BuildsCreatePage);
+)(BuildsForm);
