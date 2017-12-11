@@ -16,9 +16,6 @@ export function* getBuild() {
   // TODO: don't do this.
   const splitPathname = location.pathname.split('/');
   const id = splitPathname[splitPathname.length - 1];
-  console.log(id);
-
-// 5a22401eb64e8a2625cbbc1a
 
   const requestURL = `http://localhost:4040/api/builds/${id}`;
 
