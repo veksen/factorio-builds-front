@@ -133,6 +133,7 @@
     "compression": "1.6.2",
     "cross-env": "5.0.0",
     "express": "4.15.5",
+    "flux-standard-action": "^2.0.0",
     "fontfaceobserver": "2.0.9",
     "formsy-react": "^1.1.1",
     "history": "4.6.3",
