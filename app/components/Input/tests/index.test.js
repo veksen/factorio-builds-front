@@ -5,12 +5,12 @@ import Input from '../index';
 
 describe('<Input />', () => {
   it('should render an <input> tag', () => {
-    const renderedComponent = shallow(<Input />);
+    const renderedComponent = shallow(<Input />).dive();
     expect(renderedComponent.type()).toEqual('input');
   });
 
   it('should have a className attribute', () => {
-    const renderedComponent = shallow(<Input />);
+    const renderedComponent = shallow(<Input />).dive();
     expect(renderedComponent.prop('className')).toBeDefined();
   });
 
@@ -21,7 +21,7 @@ describe('<Input />', () => {
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<Input attribute={'test'} />);
+    const renderedComponent = shallow(<Input attribute={'test'} />).dive();
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });
