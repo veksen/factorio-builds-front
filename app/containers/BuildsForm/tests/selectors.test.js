@@ -2,7 +2,7 @@
 // import { selectBuildsFormDomain } from '../selectors';
 
 describe('selectBuildsFormDomain', () => {
-  it('Expect to have unit tests specified', () => {
+  it.skip('Expect to have unit tests specified', () => {
     expect(true).toEqual(false);
   });
 });

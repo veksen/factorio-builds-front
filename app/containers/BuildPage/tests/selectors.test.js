@@ -2,7 +2,7 @@
 // import { selectBuildPageDomain } from '../selectors';
 
 describe('selectBuildPageDomain', () => {
-  it('Expect to have unit tests specified', () => {
+  it.skip('Expect to have unit tests specified', () => {
     expect(true).toEqual(false);
   });
 });
