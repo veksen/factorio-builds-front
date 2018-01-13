@@ -1,20 +1,21 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 
 import FormWrapper from '../index';
 
 describe('<FormWrapper />', () => {
+  const children = (<input type="text" />);
+
   it('should be a div', () => {
     const renderedComponent = shallow(
       <FormWrapper label={'test label'}>
-        content
+        {children}
       </FormWrapper>
     ).dive();
     expect(renderedComponent.type()).toEqual('div');
   });
 
   it('should render children', () => {
-    const children = (<input type="text" />);
     const renderedComponent = shallow(
       <FormWrapper>
         {children}
@@ -23,9 +24,8 @@ describe('<FormWrapper />', () => {
     expect(renderedComponent.contains(children)).toEqual(true);
   });
 
-  it.skip('should render a label if passed as prop', () => {
-    const children = (<input type="text" />);
-    const renderedComponent = shallow(
+  it('should render a label if passed as prop', () => {
+    const renderedComponent = mount(
       <FormWrapper label={'test label'}>
         {children}
       </FormWrapper>
