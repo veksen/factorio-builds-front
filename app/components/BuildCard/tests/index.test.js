@@ -1,19 +1,19 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router-dom';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 import LanguageProvider from 'containers/LanguageProvider';
 
 import configureStore from '../../../configureStore';
 import { translationMessages } from '../../../i18n';
 
-import BuildCard from '../index';
+import { BuildCard } from '../index';
 
 describe('<BuildCard />', () => {
   let store;
   let build;
-  let renderComponent;
+  let renderConnectedComponent;
 
   beforeAll(() => {
     store = configureStore({}, browserHistory);
@@ -26,23 +26,26 @@ describe('<BuildCard />', () => {
       name: '8-8 balancer',
       category: 'balancers',
     };
-    renderComponent = () => shallow(
+
+    renderConnectedComponent = () => mount(
       <Provider store={store}>
         <LanguageProvider messages={translationMessages}>
           <BuildCard build={build} />
         </LanguageProvider>
       </Provider>
-    ).dive();
+    );
   });
 
-  it.skip('should be a div', () => {
-    const renderedComponent = renderComponent();
+  it('should be a div', () => {
+    const renderedComponent = shallow(
+      <BuildCard build={build} />
+    ).dive();
     expect(renderedComponent.type()).toEqual('div');
   });
 
-  it.skip('should render the build name', () => {
-    const renderedComponent = renderComponent();
-    expect(renderedComponent.contains(<h4>{build.name}</h4>)).toEqual(true);
-    // expect(renderedComponent.contains(childrenTwo)).toEqual(true);
+  it('should render the build name', () => {
+    const renderedComponent = renderConnectedComponent();
+    expect(renderedComponent.find('h4').length).toEqual(1);
+    expect(renderedComponent.find('h4').text()).toEqual(build.name);
   });
 });

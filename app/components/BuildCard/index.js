@@ -74,7 +74,7 @@ const HiddenImage = styled.img`
   height: auto;
 `;
 
-class BuildCard extends React.Component { // eslint-disable-line react/prefer-stateless-function
+export class BuildCard extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     const { build } = this.props;
     const buildId = build._id; // eslint-disable-line no-underscore-dangle
