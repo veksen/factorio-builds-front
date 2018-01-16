@@ -21,9 +21,9 @@ class Blueprints extends React.PureComponent { // eslint-disable-line react/pref
         {this.props.blueprints.map((blueprint) => {
           const blueprintId = blueprint._id; // eslint-disable-line no-underscore-dangle
           return (
-            <Blueprint>
+            <Blueprint key={blueprintId}>
               <Label htmlFor={blueprintId}>{blueprint.name}</Label>
-              <Textarea key={blueprintId} id={blueprintId} defaultValue={blueprint.hash} readonly rows={'4'} />
+              <Textarea id={blueprintId} defaultValue={blueprint.hash} readonly rows={'4'} />
             </Blueprint>
           );
         })}
