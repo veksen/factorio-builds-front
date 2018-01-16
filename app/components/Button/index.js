@@ -16,7 +16,7 @@ function Button(props) {
   // If the Button has a handleRoute prop, we want to render a button
   if (props.handleRoute) {
     return (
-      <StyledButton onClick={props.handleRoute} {...props}>
+      <StyledButton onClick={props.handleRoute}>
         {Children.toArray(props.children)}
       </StyledButton>
     );
@@ -24,7 +24,7 @@ function Button(props) {
 
   // Otherwise render an anchor tag
   return (
-    <A href={props.href} onClick={props.onClick} {...props}>
+    <A href={props.href} onClick={props.onClick}>
       {Children.toArray(props.children)}
     </A>
   );
