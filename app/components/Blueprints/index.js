@@ -6,28 +6,13 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
 
-const Blueprint = styled.div`
-  & + & {
-    margin-top: 15px;
-  }
-`;
-
-const Label = styled.label`
-  margin-bottom: 5px;
-  display: block;
-`;
-
-const Textarea = styled.textarea`
-  background: #D8D8D8;
-  width: 100%;
-  min-height: 100px;
-  padding: 7px;
-`;
+import Blueprint from './Blueprint';
+import Label from './Label';
+import Textarea from './Textarea';
 
 class Blueprints extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
